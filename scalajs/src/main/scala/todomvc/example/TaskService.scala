@@ -27,7 +27,7 @@ object TaskService {
 
   def fromString(json: String, state: mutable.Map[String, Any] = mutable.Map.empty)(implicit config: PConfig[JsValue]): Try[Task] = {
     Try(Json.read(json)).flatMap(jsValue =>
-      TaskUnpickler.unpickle(jsValue, state)(config))
+      Unpickle[Task].from(jsValue, state)(config))
   }
 
   def create(task: Task)(implicit http: HttpService): Future[Task] = flatten {

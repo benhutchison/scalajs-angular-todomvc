@@ -14,12 +14,12 @@ package object example {
   //
   // The issue will be tracked in the upstream project, and below lines will be removed when 
   // it's fixed.
-  implicit object TaskUnpickler extends Unpickler[Task] {
-
-    override def unpickle[P](pickle: P, state: mutable.Map[String, Any])(implicit config: PConfig[P]): Try[Task] = for {
-      id <- config.readObjectFieldNum(pickle, "id").map(_.toLong)
-      title <- config.readObjectFieldStr(pickle, "title")
-      completed <- config.readObjectField(pickle, "completed").map(config.readBoolean(_)).flatten
-    } yield Task(title, completed, id)
-  }
+//  implicit object TaskUnpickler extends Unpickler[Task] {
+//
+//    override def unpickle[P](pickle: P, state: mutable.Map[String, Any])(implicit config: PConfig[P]): Try[Task] = for {
+//      id <- config.readObjectFieldNum(pickle, "id").map(_.toLong)
+//      title <- config.readObjectFieldStr(pickle, "title")
+//      completed <- config.readObjectField(pickle, "completed").map(config.readBoolean(_)).flatten
+//    } yield Task(title, completed, id)
+//  }
 }
